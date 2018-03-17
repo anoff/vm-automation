@@ -13,8 +13,14 @@ variable "admin_user" {
   default     = "root"
 }
 
-variable "admin_key" {
-  description = "Public SSH key of the admin user"
+variable "admin_public_key" {
+  description = "Path to Public SSH key of the admin user"
+  default     = "~/.ssh/id_rsa.pub"
+}
+
+variable "admin_private_key" {
+  description = "Path to Private SSH key of the admin user"
+  default     = "~/.ssh/id_rsa"
 }
 
 variable "vm_type" {
@@ -102,7 +108,7 @@ resource "azurerm_virtual_machine" "ds" {
 
     ssh_keys = [{
       path     = "/home/${var.admin_user}/.ssh/authorized_keys"
-      key_data = "${var.admin_key}"
+      key_data = "${file(var.admin_public_key)}"
     }]
   }
 
@@ -114,6 +120,12 @@ resource "azurerm_virtual_machine" "ds" {
     inline = [
       "echo HELLO > test.txt",
     ]
+
+    connection {
+      type        = "ssh"
+      user        = "${var.admin_user}"
+      private_key = "${file(var.admin_private_key)}"
+    }
   }
 }
 
