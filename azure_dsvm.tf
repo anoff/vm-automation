@@ -59,7 +59,7 @@ resource "azurerm_virtual_machine" "ds" {
   location                         = "${azurerm_resource_group.ds.location}"
   resource_group_name              = "${azurerm_resource_group.ds.name}"
   network_interface_ids            = ["${azurerm_network_interface.ds.id}"]
-  vm_size                          = "Standard_NC6"
+  vm_size                          = "${var.vm_type}"
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = true
 

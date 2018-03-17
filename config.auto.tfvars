@@ -11,5 +11,4 @@ admin_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCxvL17DDs92kFEeVLscYWdQOUvd1+
 admin_user = "andreas"
 
 # Type of VM to deploy (default: Standard_NC6 - GPU instance)
-#vm_type     = "Standard_A1_V2"
-
+vm_type = "Standard_A1_V2"
