@@ -2,6 +2,7 @@
 
 PATH_SSH_KEY=~/.ssh/id_rsa
 REMOTE_DIR=~/work
+LOCAL_DIR=.
 PATH_VM_ID=infra/.vm-id
 PATH_VM_IP=infra/.vm-ip
 
@@ -15,9 +16,9 @@ CURRENT_DIR=$(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 
 # sync code
 syncup:
-	rsync -e "ssh -i ${PATH_SSH_KEY}" -avz --exclude=".git/" --exclude-from=.gitignore . $(shell echo ${VM_CONN}:${REMOTE_DIR}/${CURRENT_DIR} | tr -d '[:space:]')
+	rsync -e "ssh -i ${PATH_SSH_KEY}" -avz --exclude=".git/" --exclude-from=.gitignore ${LOCAL_DIR} $(shell echo ${VM_CONN}:${REMOTE_DIR}/${CURRENT_DIR} | tr -d '[:space:]')
 syncdown:
-	rsync -e "ssh -i ${PATH_SSH_KEY}" -avz --exclude=".git/" --exclude-from=.gitignore $(shell echo ${VM_CONN}:${REMOTE_DIR}/${CURRENT_DIR}/ | tr -d '[:space:]') .
+	rsync -e "ssh -i ${PATH_SSH_KEY}" -avz --exclude=".git/" --exclude-from=.gitignore $(shell echo ${VM_CONN}:${REMOTE_DIR}/${CURRENT_DIR}/ | tr -d '[:space:]') ${LOCAL_DIR}
 # start/stop instance
 stop:
 	az vm deallocate --ids ${VM_ID}
