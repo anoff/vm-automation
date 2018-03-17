@@ -118,13 +118,14 @@ resource "azurerm_virtual_machine" "ds" {
 
   provisioner "remote-exec" {
     inline = [
-      "echo HELLO > test.txt",
+      "mkdir -p work",
     ]
 
     connection {
       type        = "ssh"
       user        = "${var.admin_user}"
       private_key = "${file(var.admin_private_key)}"
+      host        = "${azurerm_public_ip.ds.ip_address}"
     }
   }
 }
