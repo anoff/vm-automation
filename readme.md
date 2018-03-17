@@ -18,6 +18,13 @@
 
 First copy the content of this repository into the folder from where you want to manage the VM.
 
+```sh
+# download the file and unzip in current directory (under vm-automation)
+curl -s https://codeload.github.com/anoff/vm-automation/zip/master | tar -xz --exclude "assets/"
+# link the Makefile into the working directory
+ln -s vm-automation-master/Makefile Makefile
+```
+
 ### Prerequisites 🛠
 
 First make sure you have some prerequisites installed:
@@ -38,10 +45,10 @@ _Once open select `PowerShell` as environment_
 
 ```powershell
 # Use this command to view the current license agreement
-Get-AzureRmMarketplaceTerms -Publisher "microsoft-ads" -Product "windows-data-science-vm" -Name "linuxdsvmubuntu"
+Get-AzureRmMarketplaceTerms -Publisher "microsoft-ads" -Product "linux-data-science-vm-ubuntu" -Name "linuxdsvmubuntu"
 
 # If you feel confident to agree to the agreement use the following command to enable the offering for your subscription
-Get-AzureRmMarketplaceTerms -Publisher "microsoft-ads" -Product "windows-data-science-vm" -Name "linuxdsvmubuntu" | Set-AzureRmMarketplaceTerms -Accept
+Get-AzureRmMarketplaceTerms -Publisher "microsoft-ads" -Product "linux-data-science-vm-ubuntu" -Name "linuxdsvmubuntu" | Set-AzureRmMarketplaceTerms -Accept
 ```
 <img src="./assets/azure_sign_terms.png" width="80%"><br>
 _Final output should look like this_
