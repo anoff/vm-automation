@@ -20,7 +20,7 @@ First copy the content of this repository into the folder from where you want to
 
 ```sh
 # download the file and unzip in current directory (under vm-automation)
-curl -s https://codeload.github.com/anoff/vm-automation/zip/master | tar -xz --exclude "assets/"
+curl -s https://codeload.github.com/ecohydro/vm-automation | tar -xz --exclude "assets/"
 # link the Makefile into the working directory
 ln -s vm-automation-master/Makefile Makefile
 ```
