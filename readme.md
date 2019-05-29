@@ -16,24 +16,80 @@
 
 ## Installation 📦
 
-First copy the content of this repository into the folder from where you want to manage the VM.
+First download the content of this repository (minus the .git folder) into the project folder from where you want to manage the VM.
 
 ```sh
 # download the file and unzip in current directory (under vm-automation)
-curl -s https://codeload.github.com/ecohydro/vm-automation | tar -xz --exclude "assets/"
+curl -s https://codeload.github.com/ecohydro/vm-automation/legacy.tar.gz/master | tar -xz --one-top-level=terraform --exclude "assets" --strip-components=1
 # link the Makefile into the working directory
-ln -s vm-automation-master/Makefile Makefile
+ln -s terraform/Makefile Makefile
 ```
+
+Your project should look something like this if you started your project using the cookiecutter data science template:
+
+```
+├── LICENSE
+├── Makefile           <- Makefile with commands like `make data` or `make train`
+├── README.md          <- The top-level README for developers using this project.
+├── data
+│   ├── external       <- Data from third party sources.
+│   ├── interim        <- Intermediate data that has been transformed.
+│   ├── processed      <- The final, canonical data sets for modeling.
+│   └── raw            <- The original, immutable data dump.
+│
+├── docs               <- A default Sphinx project; see sphinx-doc.org for details
+│
+├── models             <- Trained and serialized models, model predictions, or model summaries
+│
+├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
+│                         the creator's initials, and a short `-` delimited description, e.g.
+│                         `1.0-jqp-initial-data-exploration`.
+│
+├── references         <- Data dictionaries, manuals, and all other explanatory materials.
+│
+├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
+│   └── figures        <- Generated graphics and figures to be used in reporting
+│
+├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
+│                         generated with `pip freeze > requirements.txt`
+│
+├── setup.py           <- Make this project pip installable with `pip install -e`
+├── src                <- Source code for use in this project.
+│   ├── __init__.py    <- Makes src a Python module
+│   │
+│   ├── data           <- Scripts to download or generate data
+│   │   └── make_dataset.py
+│   │
+│   ├── features       <- Scripts to turn raw data into features for modeling
+│   │   └── build_features.py
+│   │
+│   ├── models         <- Scripts to train models and then use trained models to make
+│   │   │                 predictions
+│   │   ├── predict_model.py
+│   │   └── train_model.py
+│   │
+│   └── visualization  <- Scripts to create exploratory and results oriented visualizations
+│       └── visualize.py
+│
+|── tox.ini            <- tox file with settings for running tox; see tox.testrun.org
+|
+├── terraform <- You just downloaded this from this repo
+    ├── azure_dsvm.tf       <- Terraform script that defines what should be built on Azure and how it all fits together
+    ├── config.auto.tfvars  <- Terraform variables that control location, access, type, and name of your VM. Open and edit
+    ├── Makefile            <- Defines the make commands you can use as shortcuts to interact with the VM: stop, start, ssh, etc.
+    └── readme.md
+```
+
 
 ### Prerequisites 🛠
 
 First make sure you have some prerequisites installed:
 
-- [ ] [Terraform](https://www.terraform.io/downloads.html) for infrastructure provisioning
-- [ ] [azure cli 2.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) as provider for terraform and to interact with the VM
-- [ ] [make](http://gnuwin32.sourceforge.net/packages/make.htm) as simple cross-platform scripting solution
+- [ ] [Terraform](https://www.terraform.io/downloads.html) for infrastructure provisioning, place this in `/usr/local/bin` on Mac or Linux and your terminal should find the binary automatically. Test by running `terraform` to see if a help page appears
+- [ ] [azure cli 2.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) as provider for terraform and to interact with the VM. Install with brew, yum, or apt-get depending on your OS
+- [ ] [make](http://gnuwin32.sourceforge.net/packages/make.htm) as simple cross-platform scripting solution. You have this if you are on Mac or Linux.
 
-### Sign the terms of service ⚖️
+### Sign the terms of service ⚖️ (if you are using our WAVES lab account, this step has already been done for you)
 
 The Data Science VM on Azure is offered via the Marketplace and therefore has specific terms of service. Before this offering can be automatically deployed via Terraform you need to accept the license agreement for your subscription. This can be done via **PowerShell**. Easiest way to use powershell is open the Cloudshell on the [Azure Portal](http://portal.azure.com)
 
@@ -55,7 +111,7 @@ _Final output should look like this_
 
 ### Initialize Terraform 🌏
 
-Before you can use the Terraform recipe you need to initialize it by running
+Before you can use the Terraform recipe you need to be in the `terraform` directory and initialize it by running
 
 ```sh
 terraform init
@@ -98,10 +154,4 @@ make syncup # copy your local directory to the VM
 
 make syncdown # copy any changes you made on the remote system over to your local directory 🚨 WARNING: OVERWRITES LOCAL CHANGES
 ```
-
-## Install cuDNN
-
-> 🚨 Note: I think the download is unnecessary as the cuDNN directory already exists under `usr/local/cuda-8-cuddn-5` but is not correctly linked.
-
-The Data Science VM might lack the Cuda Deep Neural Net framework. To install it download it from the [nVidia website](https://developer.nvidia.com/rdp/cudnn-download) (needs a free dev account) for your Cuda version (`nvcc --version`) and follow [this blogpost](https://aboustati.github.io/How-to-Setup-a-VM-in-Azure-for-Deep-Learning/) for the installation. You might need cUDNN 5.0.
 
