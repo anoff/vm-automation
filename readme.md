@@ -16,7 +16,7 @@
 
 ## Installation 📦
 
-First download the content of this repository (minus the .git folder) into the project folder from where you want to manage the VM.
+First download the content of this repository into the project folder from where you want to manage the VM.
 
 ```sh
 # download the file and unzip in current directory (under vm-automation)
@@ -28,16 +28,12 @@ ln -s terraform/Makefile Makefile
 Your project should look something like this if you started your project using the cookiecutter data science template:
 
 ```
-├── LICENSE
-├── Makefile           <- Makefile with commands like `make data` or `make train`
 ├── README.md          <- The top-level README for developers using this project.
 ├── data
 │   ├── external       <- Data from third party sources.
 │   ├── interim        <- Intermediate data that has been transformed.
 │   ├── processed      <- The final, canonical data sets for modeling.
 │   └── raw            <- The original, immutable data dump.
-│
-├── docs               <- A default Sphinx project; see sphinx-doc.org for details
 │
 ├── models             <- Trained and serialized models, model predictions, or model summaries
 │
@@ -51,7 +47,7 @@ Your project should look something like this if you started your project using t
 │   └── figures        <- Generated graphics and figures to be used in reporting
 │
 ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
+│                         generated with `pip freeze > requirements.txt`. Can also be a conda environment file if you make minor edit to setup.py
 │
 ├── setup.py           <- Make this project pip installable with `pip install -e`
 ├── src                <- Source code for use in this project.
@@ -70,13 +66,11 @@ Your project should look something like this if you started your project using t
 │   │
 │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
 │       └── visualize.py
-│
-|── tox.ini            <- tox file with settings for running tox; see tox.testrun.org
 |
 ├── terraform <- You just downloaded this from this repo
     ├── azure_dsvm.tf       <- Terraform script that defines what should be built on Azure and how it all fits together
     ├── config.auto.tfvars  <- Terraform variables that control location, access, type, and name of your VM. Open and edit
-    ├── Makefile            <- Defines the make commands you can use as shortcuts to interact with the VM: stop, start, ssh, etc.
+    ├── Makefile            <- Defines the make commands you can use as shortcuts to interact with the VM: stop, start, ssh, etc. Only run make commands from the project directory, not the terraform directory.
     └── readme.md
 ```
 
