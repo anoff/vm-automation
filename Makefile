@@ -1,10 +1,10 @@
 # Settings
 
 PATH_SSH_KEY=~/.ssh/id_rsa
-REMOTE_DIR=~/work
+REMOTE_DIR=~/
 LOCAL_DIR=.
-PATH_VM_ID=infra/.vm-id
-PATH_VM_IP=infra/.vm-ip
+PATH_VM_ID=terraform/.vm-id
+PATH_VM_IP=terraform/.vm-ip
 
 ##### You should not have to touch stuff below this line
 
