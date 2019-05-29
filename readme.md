@@ -68,11 +68,10 @@ Your project should look something like this if you started your project using t
 │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
 │       └── visualize.py
 |
-├── terraform               <- You just downloaded and extracted this from this repo. Cointains your infrastructure plan.
-    ├── azure_dsvm.tf       <- Terraform script that defines what should be built on Azure and how it all fits together
-    ├── config.auto.tfvars  <- Terraform variables that control location, access, type, and name of your VM. Open and edit
-    ├── Makefile            <- Defines the make commands you can use as shortcuts to interact with the VM: stop, start, ssh,
-                               etc. Only run make commands from the project directory, not the terraform directory.
+├── terraform              <- Contains your infrastructure plan.
+    ├── azure_dsvm.tf      <- Terraform script that defines what should be built on Azure
+    ├── config.auto.tfvars <- Terraform variables. Edit this file for your name and project
+    ├── Makefile           <- Defines the shortcuts to interact with the VM.
     └── readme.md
 ```
 
@@ -138,7 +137,7 @@ When running the terraform command, two new files will be created. `.vm-id` will
 ### Work with the machine 👩‍💻
 
 ```sh
-# link the Makefile to your main directory and then run the following commands
+# link the Makefile to your project directory and then run the following commands from that directory
 
 make start # to start the VM
 
