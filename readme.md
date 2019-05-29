@@ -25,7 +25,7 @@ curl -s https://codeload.github.com/ecohydro/vm-automation/legacy.tar.gz/master 
 ln -s terraform/Makefile Makefile
 ```
 
-Your project should look something like this if you started your project using the (cookiecutter data science template)[https://drivendata.github.io/cookiecutter-data-science/]. Delete the existing Makefile from that template if you are using it so that it doesn't conflict with the Makefile for Azure:
+Your project should look something like this if you started your project using the [cookiecutter data science template](https://drivendata.github.io/cookiecutter-data-science/). Delete the existing Makefile from that template if you are using it so that it doesn't conflict with the Makefile for Azure:
 
 ```
 ├── README.md          <- The top-level README for developers using this project.
