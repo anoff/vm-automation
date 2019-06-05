@@ -16,3 +16,7 @@ admin_user = "andreas"
 # Type of VM to deploy (default: Standard_NC6 - GPU instance)
 #vm_type = "Standard_A1_V2"
 
+# other gpu instance types 
+## https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-gpu
+# other non-gpu instance types (use general purpose instances if you don't need gpu) 
+## https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-general
